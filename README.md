@@ -25,5 +25,6 @@ The following are projects done during the studies:
 
 ## Acknowledgement
 
-**God**
-**Alx**
+*God*
+
+*Alx*
