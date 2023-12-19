@@ -2,7 +2,7 @@
 **0x03. Python - Data Structures: Lists, Tuples**
 
 ## Author's Details
-Name: *Wilz Abel.*
+Name: *Wilz Abel*
 
 Email: *juiciwhilf@gmail.com*
 
