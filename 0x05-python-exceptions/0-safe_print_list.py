@@ -13,15 +13,12 @@ def safe_print_list(my_list=[], x=0):
         Returns: the real number of elements printed.
     """
     count = 0
-    iterator = iter(my_list)  # Create an iterator for the list
-    
-    while count < x:
+    for item in range(x):
         try:
-            print(next(iterator), end='')
-        except StopIteration:
+            print(my_list[item], end='')
+        except IndexError:
             break
         else:
             count += 1
-    
     print()
     return count
