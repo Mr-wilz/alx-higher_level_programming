@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-"""idx: index of element to be rtrieved"""
-
 def element_at(my_list, idx):
     if idx < 0:
         return (None)
