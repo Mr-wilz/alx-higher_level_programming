@@ -1,74 +1,157 @@
-==========================
-The ``matrix_mul`` module
-==========================
+# The ``2-matrix_divided`` module
+============================================
+How to use 2-matrix_divided.py
+============================================
 
-Using ``matrix_mul``
----------------------
+This library has one function called ``matrix_divided()``
 
-Import the function:
+``matrix_divided()`` returns a new matrix after a given matrix has been
+divided by a number ``div``:
 
-    >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+Importing the function matrix_divided.
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
 
-Now test it:
+Dividing by a positive or negative integer.
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, 5)
+    [[0.2, 0.4, 0.6], [0.8, 1.0, 1.2]]
 
-    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
-    [[7, 10], [15, 22]]
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, -5)
+    [[-0.2, -0.4, -0.6], [-0.8, -1.0, -1.2]]
 
-    >>> matrix_mul([[1, 2]], [[3.0, 4], [5, 6.0]])
-    [[13.0, 16.0]]
+    >>> matrix = [[1.1, 2, -3.3], [4, 5.5, -6]]
+    >>> matrix_divided(matrix, 5)
+    [[0.22, 0.4, -0.66], [0.8, 1.1, -1.2]]
 
-    >>> matrix_mul([[1, -2], [-5, 6]], [[2, 3], [4, -7]])
-    [[-6, 17], [14, -57]]
+    >>> matrix = [[1, 2.2, -3.3], [4.4, 5.5, -6]]
+    >>> matrix_divided(matrix, -5)
+    [[-0.2, -0.44, 0.66], [-0.88, -1.1, 1.2]]
 
-    >>> matrix_mul([[1, 2]], 9)
+Dividing by a positive or negative float.
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, 2.2)
+    [[0.45, 0.91, 1.36], [1.82, 2.27, 2.73]]
+
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, -2.2)
+    [[-0.45, -0.91, -1.36], [-1.82, -2.27, -2.73]]
+
+    >>> matrix = [[1.1, 2, -3.3], [4, 5.5, -6]]
+    >>> matrix_divided(matrix, 5.5)
+    [[0.2, 0.36, -0.6], [0.73, 1.0, -1.09]]
+
+Dividing by 1
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, 1)
+    [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+
+Dividing by a boolean
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, True)
+    [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, False)
     Traceback (most recent call last):
-    TypeError: m_b must be a list
+        ...
+    ZeroDivisionError: division by zero
 
-    >>> matrix_mul("Hello", [[1, 2]])
+Dividing by a string.
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, "1")
     Traceback (most recent call last):
-    TypeError: m_a must be a list
+        ...
+    TypeError: div must be a number
 
-    >>> matrix_mul(["Betty", "Holberton"], [[1, 2]])
+Dividing by None.
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, None)
     Traceback (most recent call last):
-    TypeError: m_a must be a list of lists
+        ...
+    TypeError: div must be a number
 
-    >>> matrix_mul([[1, 2]], ["Betty", "Holberton"])
+Dividing by a various types.
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, [1, 2])
     Traceback (most recent call last):
-    TypeError: m_b must be a list of lists
+        ...
+    TypeError: div must be a number
 
-    >>> matrix_mul([], [[9, 4]])
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, {1})
     Traceback (most recent call last):
-    ValueError: m_a can't be empty
+        ...
+    TypeError: div must be a number
 
-    >>> matrix_mul([[9, 4]], [[]])
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, ())
     Traceback (most recent call last):
-    ValueError: m_b can't be empty
+        ...
+    TypeError: div must be a number
 
-    >>> matrix_mul([[1, 2], ["Hello", 9]], [[9, 4], [2, 5]])
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, (1))
+    [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+
+Dividing None by None.
+    >>> matrix = None
+    >>> matrix_divided(matrix, None)
     Traceback (most recent call last):
-    TypeError: m_a should contain only integers or floats
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_mul([[9, 4], [2, 5]], [[1, 2], ["Hello", 9]])
+Passing an empty matrix.
+    >>> matrix = []
+    >>> matrix_divided(matrix, 10)
     Traceback (most recent call last):
-    TypeError: m_b should contain only integers or floats
+    	...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_mul([[9, 4], [2]], [[1, 2], [4, 9]])
+Passing a string as a matrix.
+    >>> matrix = "chris brown"
+    >>> matrix_divided(matrix, 10)
     Traceback (most recent call last):
-    TypeError: each row of m_a must should be of the same size
+    	...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_mul([[9, 4], [2, 7.0]], [[1], [4, 9]])
+Passing a tuple as a matrix.
+    >>> matrix = ([1, 2, 3], [1, 2, 3])
+    >>> matrix_divided(matrix, 10)
     Traceback (most recent call last):
-    TypeError: each row of m_b must should be of the same size
+    	...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_mul([[9, 4, 4], [2, 8, 2]], [[1, 2], [4, 9]])
+Dividing a matrix where rows are unequal in size.
+    >>> matrix = [[2, 34], [7, 9.8, -76, 1], [-77]]
+    >>> matrix_divided(matrix, 3)
     Traceback (most recent call last):
-    ValueError: m_a and m_b can't be multiplied
+        ...
+    TypeError: Each row of the matrix must have the same size
 
-    >>> matrix_mul([[9, 4, 4], [2, 8, 2]])
+Dividing a matrix where some of its elements are not floats or integers.
+    >>> matrix = [[1, "2", 3], [{4}, "chris_breezy", (6)]]
+    >>> matrix_divided(matrix, 10)
     Traceback (most recent call last):
-    TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
+    	...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_mul()
+Passing more than two arguments to matrix_divided().
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, 10, 11) #doctest: +ELLIPSIS
     Traceback (most recent call last):
-    TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+		...
+    TypeError: matrix_divided() takes 2 positional arguments but ...
 
+Passing no arguments to matrix_divided().
+    >>> matrix_divided()
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+
+Passing one argument to matrix_divided().
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix)
+    Traceback (most recent call last):
+	    ...
+    TypeError: matrix_divided() missing 1 required positional argument: 'div'
