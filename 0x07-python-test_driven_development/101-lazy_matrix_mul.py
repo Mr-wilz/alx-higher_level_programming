@@ -10,4 +10,3 @@ def lazy_matrix_mul(m_a, m_b):
     matmul, and returns the result.
     """
     return numpy.matmul(m_a, m_b)
-
