@@ -2,7 +2,7 @@
 """Module lazy_matrix_mul
 Matrix multiplication using NumPy.
 """
-import numpy as np
+import numpy
 
 
 def lazy_matrix_mul(m_a, m_b):
