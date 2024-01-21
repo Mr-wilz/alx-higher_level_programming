@@ -1,67 +1,123 @@
-===============================
-The ``lazy_matrix_mul`` module
-===============================
+# The ``101-lazy_matrix_mul`` module
+============================================
+How to use 101-lazy_matrix_mul.py
+============================================
 
-Using ``lazy_matrix_mul``
---------------------------
+This library has one function called ``lazy_matrix_mul()``
 
-Import the function:
+``lazy_matrix_mul()`` multiplies 2 matrices using the numpy module.
 
+Importing the function lazy_matrix_mul.
     >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
 
-Now test it:
+Passing matrices.
+    >>> m_a = [[1, 2], [3, 4]]
+    >>> m_b = [[1, 2], [3, 4]]
+    >>> lazy_matrix_mul(m_a, m_b)
+    array([[ 7, 10],
+           [15, 22]])
 
-    >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
-    [[ 7 10]
-     [15 22]]
+    >>> m_a = [[1, 2]]
+    >>> m_b = [[3, 4], [5, 6]]
+    >>> lazy_matrix_mul(m_a, m_b)
+    array([[13, 16]])
 
-    >>> print(lazy_matrix_mul([[1, 2]], [[3.0, 4], [5, 6.0]]))
-    [[13. 16.]]
+Passing non-lists.
+    >>> m_a = ([1, 2], [3, 4])
+    >>> m_b = [[1, 2], [3, 4]]
+    >>> lazy_matrix_mul(m_a, m_b)
+    array([[ 7, 10],
+           [15, 22]])
 
-    >>> print(lazy_matrix_mul([[1, -2], [-5, 6]], [[2, 3], [4, -7]]))
-    [[ -6  17]
-     [ 14 -57]]
-
-    >>> print(lazy_matrix_mul([[1, 2]], 9))
+    >>> m_a = "1"
+    >>> m_b = [[1, 2], [3, 4]]
+    >>> lazy_matrix_mul(m_a, m_b)
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
+        ...
+    ValueError: Scalar operands are not allowed, use '*' instead
 
-    >>> print(lazy_matrix_mul("Hello", [[1, 2]]))
+Passing a non-list in any element of matrix_divided
+    >>> m_a = [2, [3, 4]]
+    >>> m_b = [[1, 2], [3, 4]]
+    >>> lazy_matrix_mul(m_a, m_b)
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
+        ...
+    ValueError: setting an array element with a sequence.
 
-    >>> print(lazy_matrix_mul(["Betty", "Holberton"], [[1, 2]]))
+Passing an empty matrix.
+    >>> m_a = []
+    >>> m_b = [[1, 2], [3, 4]]
+    >>> lazy_matrix_mul(m_a, m_b)
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+        ...
+    ValueError: shapes (0,) and (2,2) not aligned: 0 (dim 0) != 2 (dim 0)
 
-    >>> print(lazy_matrix_mul([[1, 2]], ["Betty", "Holberton"]))
+    >>> m_a = [[]]
+    >>> m_b = [[1, 2], [3, 4]]
+    >>> lazy_matrix_mul(m_a, m_b)
     Traceback (most recent call last):
-    TypeError: ufunc 'matmul' did not contain a loop with signature matching types dtype('<U21') dtype('<U21') dtype('<U21')
+        ...
+    ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
 
-    >>> print(lazy_matrix_mul([], [[9, 4]]))
+    >>> m_a = [[1, 2], [3, 4]]
+    >>> m_b = []
+    >>> lazy_matrix_mul(m_a, m_b)
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 0)
+        ...
+    ValueError: shapes (2,2) and (0,) not aligned: 2 (dim 1) != 0 (dim 0)
 
-    >>> print(lazy_matrix_mul([[9, 4]], [[]]))
+If one element of those list of lists is not an integer or a float.
+    >>> m_a = [[1, "b"], [3, 4]]
+    >>> m_b = [[1, 2], [3, 4]]
+    >>> lazy_matrix_mul(m_a, m_b)
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+        ...
+    TypeError: invalid data type for einsum
 
-    >>> print(lazy_matrix_mul([[1, 2], ["Hello", 9]], [[9, 4], [2, 5]]))
+Passing None as a matrix.
+    >>> lazy_matrix_mul(None, None)
     Traceback (most recent call last):
-    TypeError: ufunc 'matmul' did not contain a loop with signature matching types dtype('<U21') dtype('<U21') dtype('<U21')
+    	...
+    TypeError: Object arrays are not currently supported
 
-    >>> print(lazy_matrix_mul([[9, 4], [2, 5]], [[1, 2], ["Hello", 9]]))
+    >>> lazy_matrix_mul([[3, 4]], None)
     Traceback (most recent call last):
-    TypeError: ufunc 'matmul' did not contain a loop with signature matching types dtype('<U21') dtype('<U21') dtype('<U21')
+        ...
+    TypeError: Object arrays are not currently supported
 
-    >>> print(lazy_matrix_mul([[9, 4], [2]], [[1, 2], [4, 9]]))
+Passing a matrix which its rows have different size.
+    >>> m_a = [[2, 2, 2], [4, 4, 4]]
+    >>> m_b = [[2], [3, 3]]
+    >>> lazy_matrix_mul(m_a, m_b)
     Traceback (most recent call last):
-    TypeError: ufunc 'matmul' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+        ...
+    ValueError: setting an array element with a sequence.
 
-    >>> print(lazy_matrix_mul([[9, 4], [2, 7.0]], [[1], [4, 9]]))
+Passing mismatched matrices.
+    >>> m_a = [[1, 2, 3], [4, 5, 6]]
+    >>> m_b = [[1, 2], [3, 4,]]
+    >>> lazy_matrix_mul(m_a, m_b)
     Traceback (most recent call last):
-    TypeError: ufunc 'matmul' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+        ...
+    ValueError: shapes (2,3) and (2,2) not aligned: 3 (dim 1) != 2 (dim 0)
 
-    >>> print(lazy_matrix_mul([[9, 4, 4], [2, 8, 2]], [[1, 2], [4, 9]]))
+Passing one argument to lazy_matrix_mul
+    >>> lazy_matrix_mul([[1, 2]])
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 3)
+        ...
+    TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+Passing no argument to lazy_matrix_mul.
+    >>> lazy_matrix_mul()
+    Traceback (most recent call last):
+        ...
+    TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+Passing more than two argument to lazy_matrix_mul.
+    >>> m_a = [[1, 2], [3, 4]]
+    >>> m_b = [[1, 2], [3, 4]]
+    >>> m_c = [[4, 5], [7, 8]]
+    >>> lazy_matrix_mul(m_a, m_b, m_c) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+        ...
+    TypeError: lazy_matrix_mul() takes 2 positional arguments but ...
