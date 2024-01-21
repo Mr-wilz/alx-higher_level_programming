@@ -12,4 +12,5 @@ def update_dictionary(a_dictionary, key, value):
     Returns:
         None (The dictionary is modified in place).
     """
-    a_dictionary[key] = value
+    a_dictionary.update([(key, value)])
+    return a_dictionary
