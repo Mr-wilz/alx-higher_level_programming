@@ -9,10 +9,9 @@ def search_replace(my_list, search, replace):
        search is the element to replace
        replace is the new element
     """
-    dup = []
-    for i in range(len(my_list)):
-        if my_list[i] == search:
-            dup.append(replace)
-        else:
-            dup.cappend(my_list[i])
-    return dup
+    new_list = my_list.copy()
+    for idx, item in enumerate(new_list):
+        if item == search:
+            new_list[idx] = replace
+
+    return new_list
