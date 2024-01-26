@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-ef weight_average(my_list=[]):
+def weight_average(my_list=[]):
     """
-    Returns the weighted average of all integers tuple (<score>, <weight>).
+    Returns the weighted average of all integers tuple
 
     Args:
-        my_list: A list of tuples, each containing a score and its corresponding weight.
+        my_list: A list of tuples, each containing a score and weight.
 
     Returns:
         The weighted average as a float. Returns 0 if the list is empty.
