@@ -10,6 +10,5 @@ def square_matrix_map(matrix=[]):
     Returns: a new matrix same size as matrix
     each value should be the square of the value of the input
     """
-
     if matrix is not None:
         return list(map(lambda x: list(map(lambda y: y**2, x)), matrix))
