@@ -14,4 +14,3 @@ class Rectangle:
     - No methods defined yet.
     """
     pass
-
