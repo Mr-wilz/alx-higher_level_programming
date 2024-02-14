@@ -1,44 +1,27 @@
 #!/usr/bin/python3
-
 """
-solves the N-queen Puzzle
+Solves the Nqueens's puzzle
 """
-
 import sys
 
 def is_safe(board, row, col, N):
     # Check if there is a queen in the same column
     for i in range(row):
-        if board[i][col] == 1:
+        if board[i] == col or \
+           board[i] - i == col - row or \
+           board[i] + i == col + row:
             return False
-
-    # Check upper diagonal on left side
-    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
-        if board[i][j] == 1:
-            return False
-
-    # Check upper diagonal on right side
-    for i, j in zip(range(row, -1, -1), range(col, N)):
-        if board[i][j] == 1:
-            return False
-
     return True
 
-def solve_nqueens_util(board, row, N):
+def solve_nqueens_util(board, row, N, solutions):
     if row == N:
-        for r in range(N):
-            print(''.join(map(str, board[r])))
-        print()
-        return True
+        solutions.append(board[:])  # Make a copy of the board
+        return
 
-    res = False
     for col in range(N):
         if is_safe(board, row, col, N):
-            board[row][col] = 1
-            res = solve_nqueens_util(board, row + 1, N) or res
-            board[row][col] = 0
-
-    return res
+            board[row] = col
+            solve_nqueens_util(board, row + 1, N, solutions)
 
 def solve_nqueens(N):
     if not N.isdigit():
@@ -49,9 +32,12 @@ def solve_nqueens(N):
         print("N must be at least 4")
         sys.exit(1)
 
-    board = [[0] * N for _ in range(N)]
-    if not solve_nqueens_util(board, 0, N):
-        print("No solution exists")
+    board = [-1] * N
+    solutions = []
+    solve_nqueens_util(board, 0, N, solutions)
+
+    for sol in solutions:
+        print([[i, sol[i]] for i in range(N)])
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
