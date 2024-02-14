@@ -4,8 +4,8 @@ Solves the Nqueens's puzzle
 """
 import sys
 
+
 def is_safe(board, row, col, N):
-    # Check if there is a queen in the same column
     for i in range(row):
         if board[i] == col or \
            board[i] - i == col - row or \
@@ -13,15 +13,17 @@ def is_safe(board, row, col, N):
             return False
     return True
 
+
 def solve_nqueens_util(board, row, N, solutions):
     if row == N:
-        solutions.append(board[:])  # Make a copy of the board
+        solutions.append(board[:])
         return
 
     for col in range(N):
         if is_safe(board, row, col, N):
             board[row] = col
             solve_nqueens_util(board, row + 1, N, solutions)
+
 
 def solve_nqueens(N):
     if not N.isdigit():
@@ -38,6 +40,7 @@ def solve_nqueens(N):
 
     for sol in solutions:
         print([[i, sol[i]] for i in range(N)])
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
