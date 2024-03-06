@@ -1,6 +1,6 @@
 # 0x0A Python Inheritance
 
-Welcome to the 0x0A Python Inheritance repository! Here, you will find a collection of Python scripts and exercises aimed at deepening your understanding of inheritance in Python.
+Welcome 👋 to the 0x0A Python Inheritance repository! Here, you will find a collection of Python scripts and exercises aimed at deepening your understanding of inheritance in Python.
 
 ## What is Inheritance?
 
@@ -56,5 +56,4 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-Happy coding!
-
+Happy coding! 😃
