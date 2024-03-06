@@ -43,8 +43,8 @@ Each directory contains detailed README files explaining the purpose of the scri
 
 If you have any questions, suggestions, or would like to collaborate, feel free to contact me:
 
-- Email: [juiciwhilf@gmail.com](mailto:juiciwhilf@gmail.com)
-- Phone: :telephone_receiver: +2347061251386
+- 📧 [juiciwhilf@gmail.com](mailto:juiciwhilf@gmail.com)
+- :telephone_receiver: +2347061251386
 
 For collaboration, please reach out to me via email at [juiciwhilf@gmail.com](mailto:juiciwhilf@gmail.com).
 
