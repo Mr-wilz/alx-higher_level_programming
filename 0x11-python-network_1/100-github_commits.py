@@ -5,6 +5,7 @@
 import requests
 import sys
 
+
 def list_commits(repo_name, owner_name):
     url = f"https://api.github.com/repos/{owner_name}/{repo_name}/commits"
     params = {'per_page': 10}
@@ -17,6 +18,7 @@ def list_commits(repo_name, owner_name):
             print(f"{sha}: {author_name}")
     else:
         print(f"Error: {response.status_code}")
+
 
 if __name__ == "__main__":
     repo_name = sys.argv[1]
