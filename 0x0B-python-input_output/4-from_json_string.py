@@ -3,6 +3,7 @@
 import json
 """ module containing the function to json atring"""
 
+
 def from_json_string(my_str):
     """Returns the Python data structure represented by a JSON string.
 
