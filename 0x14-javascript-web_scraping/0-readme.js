@@ -1,17 +1,12 @@
-#!/usr/bin/env node
+#!/usr/bin/node
+
 const fs = require('fs');
-// Check if the file path is provided as an argument
-if (process.argv.length < 3) {
-  console.error('File path is missing.');
-  process.exit(1);
-}
-const filePath = process.argv[2];
-// Read the content of the file
-fs.readFile(filePath, 'utf-8', (err, data) => {
+const file = process.argv[2];
+
+fs.readFile(file, 'utf-8', function (err, data) {
   if (err) {
-    console.error(err);
-    return;
+    console.log(err);
+  } else {
+    console.log(data);
   }
-  // Print the content of the file
-  console.log(data);
 });
